@@ -1,0 +1,71 @@
+2026-07-01 09:00:04,182 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260701_090004.log
+2026-07-01 09:00:04,182 | INFO | AnoMesBase por parâmetro: ano=2026, mes=6
+2026-07-01 09:00:04,182 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-07-01 09:00:11,826 | WARNING | DE_PARA possui 1 chaves duplicadas para a regra de Integral?. Mantendo sempre a primeira ocorrência. Exemplos: ('prefixo', 'P-31', 'ALBACORA') linhas_duplicadas=[32]
+2026-07-01 09:00:12,410 | WARNING | 49 combinacoes sem match no DE_PARA (Bacia - Bloco - Prefixo):
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - B&V III
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - BAE I
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - BAE II
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - NS29
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - NS31
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - NS41
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - NS58
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - NS59
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - P5 II
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SOV (INEX) -1
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SOV - 3 Pós Emerg. - 3
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SOV EMERG - 2
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SOV/BAE - 4
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SPH + BAE (SEAL 01)
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SPH + BAE (SEAL 02)
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SS70
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA:  -  - SS81
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS31
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS32
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS51
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS52
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - P-25
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - SS83
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - CITRINO - NS38
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - CDAN
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - FPMQ
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS32
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS38
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS42
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS52
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - SS81
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - UMGR
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - FPAN
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS31
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS38
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS41
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS51
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS52
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-18
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-19
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-20
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-37
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS73
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS81
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS83
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: POTIGUAR MAR -  - BAE II (GAD)
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: POTIGUAR MAR -  - SOV/BAE IV (GAD)
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: SERGIPE MAR -  - BAE I (GAD)
+2026-07-01 09:00:12,410 | WARNING |   Registro sem match no DE_PARA: SERGIPE MAR -  - SOV Inexigibilidade I (GAD)
+2026-07-01 09:00:21,617 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202606_20260701_090021.xlsx
+2026-07-01 09:01:27,431 | INFO | TD PowerShell stdout: 
+2026-07-01 09:01:27,432 | WARNING | TD PowerShell stderr: N�o � poss�vel obter a propriedade Open da classe Workbooks
+No C:\Users\FLVL\AppData\Local\Temp\tmpgpunknva.ps1:7 caractere:5
++     $wb = $excel.Workbooks.Open('C:\Users\Public\Python\src\Entregas\ ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], COMException
+    + FullyQualifiedErrorId : System.Runtime.InteropServices.COMException
+2026-07-01 09:01:27,432 | WARNING | TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: PowerShell falhou (rc=1): N�o � poss�vel obter a propriedade Open da classe Workbooks
+No C:\Users\FLVL\AppData\Local\Temp\tmpgpunknva.ps1:7 caractere:5
++     $wb = $excel.Workbooks.Open('C:\Users\Public\Python\src\Entregas\ ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], COMException
+    + FullyQualifiedErrorId : System.Runtime.InteropServices.COMException
+2026-07-01 09:01:27,432 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202606_20260701_090021.xlsx
+2026-07-01 09:01:27,432 | INFO | Linhas no cronograma_base: 1156
+2026-07-01 09:01:27,432 | INFO | Envio de e-mail desativado por --no-email.

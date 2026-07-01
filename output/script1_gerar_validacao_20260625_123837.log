@@ -1,0 +1,4 @@
+2026-06-25 12:38:37,398 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_123837.log
+2026-06-25 12:38:37,398 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
+2026-06-25 12:38:37,398 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 12:38:43,909 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).

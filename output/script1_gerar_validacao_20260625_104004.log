@@ -1,0 +1,11 @@
+2026-06-25 10:40:04,408 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_104004.log
+2026-06-25 10:40:04,408 | INFO | === script1_gerar_validacao iniciado ===
+2026-06-25 10:40:04,409 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 10:40:04,409 | INFO | DE_PARA: C:\Users\Public\Python\src\Entregas\output_outlook\input\DE_PARA.xlsx
+2026-06-25 10:40:04,409 | INFO | Periodo selecionado: Abril/2026
+2026-06-25 10:40:11,087 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 10:40:35,771 | INFO | Arquivo base gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_base_202604.xlsx
+2026-06-25 10:40:35,771 | INFO | Arquivo de validacao gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202604.xlsx
+2026-06-25 10:40:35,771 | INFO | Linhas no cronograma: 699
+2026-06-25 10:40:35,771 | INFO | Envio de e-mail desativado por parametro --no-email.
+2026-06-25 10:40:35,771 | INFO | === script1 finalizado com sucesso ===

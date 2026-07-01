@@ -1,0 +1,12 @@
+2026-06-25 13:15:43,184 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_131543.log
+2026-06-25 13:15:43,184 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
+2026-06-25 13:15:43,185 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 13:15:49,426 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 13:15:58,823 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_131558.xlsx
+2026-06-25 13:16:52,108 | INFO | Excel COM inicializado via DispatchEx.
+2026-06-25 13:16:53,866 | INFO | TD: aba limpa e pronta.
+2026-06-25 13:16:53,866 | INFO | TD: origem 'cronograma_base'!R1C1:R4012C20
+2026-06-25 13:16:53,904 | INFO | TD: PivotTable criada (PivotCronograma_131653).
+2026-06-25 13:16:53,953 | INFO | TD: campos de linha/coluna/valor configurados.
+2026-06-25 13:16:54,035 | INFO | TD: filtros de página configurados.
+2026-06-25 13:16:54,463 | INFO | Aba TD criada como Tabela Dinâmica com filtros/slicers.

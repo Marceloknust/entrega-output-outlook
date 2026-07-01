@@ -1,0 +1,37 @@
+2026-06-25 13:58:21,453 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_135821.log
+2026-06-25 13:58:21,453 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
+2026-06-25 13:58:21,453 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 13:58:28,003 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 13:58:37,611 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_135837.xlsx
+2026-06-25 13:59:21,736 | INFO | Excel COM inicializado via DispatchEx.
+2026-06-25 13:59:23,405 | INFO | TD: aba limpa e pronta.
+2026-06-25 13:59:23,435 | INFO | TD: origem 'cronograma_base'!R1C1:R4012C20
+2026-06-25 13:59:23,470 | INFO | TD: PivotTable criada (PivotCronograma_135923).
+2026-06-25 13:59:23,470 | INFO | TD: pivot_count imediato = 1
+2026-06-25 13:59:23,534 | INFO | TD: campos de linha/coluna/valor configurados.
+2026-06-25 13:59:23,602 | INFO | TD: filtros de página configurados.
+2026-06-25 13:59:23,721 | INFO | TD: salvando em caminho temporario: _td_temp_135923721425.xlsx
+2026-06-25 13:59:24,243 | INFO | TD: aguardando arquivo no disco... (1s)
+2026-06-25 13:59:24,744 | INFO | TD: aguardando arquivo no disco... (2s)
+2026-06-25 13:59:25,245 | INFO | TD: aguardando arquivo no disco... (3s)
+2026-06-25 13:59:25,746 | INFO | TD: aguardando arquivo no disco... (4s)
+2026-06-25 13:59:26,246 | INFO | TD: aguardando arquivo no disco... (5s)
+2026-06-25 13:59:26,747 | INFO | TD: aguardando arquivo no disco... (6s)
+2026-06-25 13:59:27,248 | INFO | TD: aguardando arquivo no disco... (7s)
+2026-06-25 13:59:27,749 | INFO | TD: aguardando arquivo no disco... (8s)
+2026-06-25 13:59:28,250 | INFO | TD: aguardando arquivo no disco... (9s)
+2026-06-25 13:59:28,751 | INFO | TD: aguardando arquivo no disco... (10s)
+2026-06-25 13:59:29,252 | INFO | TD: aguardando arquivo no disco... (11s)
+2026-06-25 13:59:29,753 | INFO | TD: aguardando arquivo no disco... (12s)
+2026-06-25 13:59:30,254 | INFO | TD: aguardando arquivo no disco... (13s)
+2026-06-25 13:59:30,755 | INFO | TD: aguardando arquivo no disco... (14s)
+2026-06-25 13:59:31,255 | INFO | TD: aguardando arquivo no disco... (15s)
+2026-06-25 13:59:31,756 | INFO | TD: aguardando arquivo no disco... (16s)
+2026-06-25 13:59:32,257 | INFO | TD: aguardando arquivo no disco... (17s)
+2026-06-25 13:59:32,757 | INFO | TD: aguardando arquivo no disco... (18s)
+2026-06-25 13:59:33,258 | INFO | TD: aguardando arquivo no disco... (19s)
+2026-06-25 13:59:33,759 | INFO | TD: aguardando arquivo no disco... (20s)
+2026-06-25 13:59:33,826 | WARNING | TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: SaveAs nao criou o arquivo apos 10s: _td_temp_135923721425.xlsx
+2026-06-25 13:59:36,325 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_135837.xlsx
+2026-06-25 13:59:36,325 | INFO | Linhas no cronograma_base: 4011
+2026-06-25 13:59:36,325 | INFO | Envio de e-mail desativado por --no-email.

@@ -1,0 +1,8 @@
+2026-06-25 12:39:44,858 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_123944.log
+2026-06-25 12:39:44,859 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
+2026-06-25 12:39:44,859 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 12:39:51,204 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 12:40:33,886 | WARNING | TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: Excel.Application.Quit
+2026-06-25 12:40:33,886 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605.xlsx
+2026-06-25 12:40:33,886 | INFO | Linhas no cronograma_base: 4011
+2026-06-25 12:40:33,886 | INFO | Envio de e-mail desativado por --no-email.

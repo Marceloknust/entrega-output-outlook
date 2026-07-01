@@ -1,0 +1,84 @@
+2026-06-26 14:22:57,862 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260626_142257.log
+2026-06-26 14:23:01,393 | INFO | AnoMesBase selecionado pelo usuário: ano=2026, mes=7
+2026-06-26 14:23:05,215 | INFO | Destinatários validados e confirmados para uso posterior.
+2026-06-26 14:23:05,216 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-26 14:23:11,112 | WARNING | DE_PARA possui 1 chaves duplicadas para a regra de Integral?. Mantendo sempre a primeira ocorrência. Exemplos: ('prefixo', 'P-31', 'ALBACORA') linhas_duplicadas=[32]
+2026-06-26 14:23:11,632 | WARNING | 64 combinacoes sem match no DE_PARA (Bacia - Bloco - Prefixo):
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - B&V III
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - BAE I
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - BAE II
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NDIS
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS29
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS31
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS32
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS33
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS41
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS42
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS58
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - NS59
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - P5 II
+2026-06-26 14:23:11,633 | WARNING |   Registro sem match no DE_PARA:  -  - SM-09
+2026-06-26 14:23:11,634 | WARNING |   Registro sem match no DE_PARA:  -  - SOV (INEX) -1
+2026-06-26 14:23:11,634 | WARNING |   Registro sem match no DE_PARA:  -  - SOV - 3 Pós Emerg. - 3
+2026-06-26 14:23:11,634 | WARNING |   Registro sem match no DE_PARA:  -  - SOV/BAE - 4
+2026-06-26 14:23:11,634 | WARNING |   Registro sem match no DE_PARA:  -  - SPH + BAE (SEAL 01)
+2026-06-26 14:23:11,634 | WARNING |   Registro sem match no DE_PARA:  -  - SPH + BAE (SEAL 02)
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - SPM-14
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - SPM-18
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - SPM-20
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - SS70
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - SS81
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - TBD-NOP-AFS-01
+2026-06-26 14:23:11,635 | WARNING |   Registro sem match no DE_PARA:  -  - TBD-NOP-INTER-EXP-01
+2026-06-26 14:23:11,636 | WARNING |   Registro sem match no DE_PARA:  -  - TBD-NOP-STP-01
+2026-06-26 14:23:11,636 | WARNING |   Registro sem match no DE_PARA:  -  - UMAR
+2026-06-26 14:23:11,636 | WARNING |   Registro sem match no DE_PARA:  -  - UMCP
+2026-06-26 14:23:11,636 | WARNING |   Registro sem match no DE_PARA:  -  - UMPA
+2026-06-26 14:23:11,636 | WARNING |   Registro sem match no DE_PARA:  -  - UMPC
+2026-06-26 14:23:11,636 | WARNING |   Registro sem match no DE_PARA:  -  - UMVT
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS31
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS32
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS51
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS52
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - P-25
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - SS83
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - CITRINO - NS38
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - CDAN
+2026-06-26 14:23:11,637 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - FPMQ
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS38
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS42
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - NS52
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - SS81
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - JUBARTE - UMGR
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - FPAN
+2026-06-26 14:23:11,638 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS31
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS38
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS52
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-18
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-19
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-20
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-37
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS73
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS81
+2026-06-26 14:23:11,639 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS83
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - RAIA - TBD-NOP-03
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: GUAJIRA OFFSHORE - GUA-OFF 0 - NDIS
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: ORANGE - DWOB - TBD-NOP-AFS-01
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: POTIGUAR MAR -  - BAE II (GAD)
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: POTIGUAR MAR -  - SOV/BAE IV (GAD)
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: SERGIPE MAR -  - BAE I (GAD)
+2026-06-26 14:23:11,640 | WARNING |   Registro sem match no DE_PARA: SERGIPE MAR -  - SOV Inexigibilidade I (GAD)
+2026-06-26 14:23:19,966 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202607_20260626_142319.xlsx
+2026-06-26 14:24:25,109 | INFO | TD PowerShell stdout: True
+SOURCE: cronograma_base!R1C1:R1045C13
+CREATED: 1
+Slicer 'TIPO' posicionado em Linha 0, Coluna 0
+Slicer 'Contrato' posicionado em Linha 0, Coluna 1
+Slicer 'Modalidade' posicionado em Linha 1, Coluna 0
+Slicer 'Atendimento' posicionado em Linha 1, Coluna 1
+PIVOT_BEFORE_CLOSE: 1
+SAVED_PIVOT_COUNT: 1
+2026-06-26 14:24:25,111 | INFO | Aba TD criada como Tabela Dinâmica com filtros/slicers.
+2026-06-26 14:24:25,111 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202607_20260626_142319.xlsx
+2026-06-26 14:24:25,112 | INFO | Linhas no cronograma_base: 1044
+2026-06-26 14:24:25,330 | INFO | E-mail de validação enviado para: marcelo.knust.prestserv@transpetro.com.br

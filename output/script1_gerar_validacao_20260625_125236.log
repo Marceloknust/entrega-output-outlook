@@ -1,0 +1,8 @@
+2026-06-25 12:52:36,870 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_125236.log
+2026-06-25 12:52:37,945 | INFO | AnoMesBase selecionado pelo usuário: ano=2026, mes=6
+2026-06-25 12:52:37,954 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 12:52:44,363 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 12:53:24,831 | WARNING | TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: Excel.Application.Quit
+2026-06-25 12:53:24,831 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202606.xlsx
+2026-06-25 12:53:24,831 | INFO | Linhas no cronograma_base: 3584
+2026-06-25 12:56:04,345 | INFO | E-mail de validação enviado para: marcelo.knust.prestserv@transpetro.com.br

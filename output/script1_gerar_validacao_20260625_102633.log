@@ -1,0 +1,24 @@
+2026-06-25 10:26:33,576 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_102633.log
+2026-06-25 10:26:33,576 | INFO | === script1_gerar_validacao iniciado ===
+2026-06-25 10:26:33,576 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 10:26:33,576 | INFO | DE_PARA: C:\Users\Public\Python\src\Entregas\output_outlook\input\DE_PARA.xlsx
+2026-06-25 10:26:33,576 | INFO | Periodo selecionado: Abril/2026
+2026-06-25 10:26:40,050 | ERROR | Falha no script1: Worksheet named 'DE_PARA' not found
+Traceback (most recent call last):
+  File "C:\Users\Public\Python\src\Entregas\output_outlook\scripts\script1_gerar_validacao.py", line 391, in main
+    df_de_para = pd.read_excel(DE_PARA_PATH, sheet_name="DE_PARA")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Public\Python\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 494, in read_excel
+    data = io.parse(
+           ^^^^^^^^^
+  File "C:\Users\Public\Python\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 1780, in parse
+    return self._reader.parse(
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Public\Python\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 753, in parse
+    sheet = self.get_sheet_by_name(asheetname)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Public\Python\.venv\Lib\site-packages\pandas\io\excel\_openpyxl.py", line 589, in get_sheet_by_name
+    self.raise_if_bad_sheet_by_name(name)
+  File "C:\Users\Public\Python\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 605, in raise_if_bad_sheet_by_name
+    raise ValueError(f"Worksheet named '{name}' not found")
+ValueError: Worksheet named 'DE_PARA' not found

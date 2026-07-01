@@ -1,0 +1,67 @@
+2026-06-25 16:39:14,516 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_163914.log
+2026-06-25 16:39:16,904 | INFO | AnoMesBase selecionado pelo usuário: ano=2026, mes=6
+2026-06-25 16:39:21,542 | INFO | Destinatários validados e confirmados para uso posterior.
+2026-06-25 16:39:21,553 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 16:39:27,707 | WARNING | DE_PARA contem 1 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 16:39:28,238 | WARNING | 61 combinacoes sem match no DE_PARA (Bacia - Bloco - Prefixo):
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - B&V III
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - BAE I
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - BAE II
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NDIS
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS29
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS31
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS32
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS33
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS41
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS42
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS58
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - NS59
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - P5 II
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - RG-PNA-1
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SM-09
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SOV (INEX) -1
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SOV - 3 Pós Emerg. - 3
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SOV EMERG - 2
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SOV/BAE - 4
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SPH + BAE (SEAL 01)
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SPH + BAE (SEAL 02)
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SPM-14
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SPM-18
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SPM-20
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SS70
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - SS81
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - TBD-NOP-AFS-01
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - TBD-NOP-INTER-EXP-01
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - TBD-NOP-STP-01
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - UMAR
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - UMCP
+2026-06-25 16:39:28,238 | WARNING |   Registro sem match no DE_PARA:  -  - UMPA
+2026-06-25 16:39:28,249 | WARNING |   Registro sem match no DE_PARA:  -  - UMPC
+2026-06-25 16:39:28,249 | WARNING |   Registro sem match no DE_PARA:  -  - UMVT
+2026-06-25 16:39:28,249 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS31
+2026-06-25 16:39:28,249 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS32
+2026-06-25 16:39:28,250 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS51
+2026-06-25 16:39:28,250 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - NS52
+2026-06-25 16:39:28,250 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - P-25
+2026-06-25 16:39:28,250 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - ALBACORA - SS83
+2026-06-25 16:39:28,251 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - CITRINO - NS38
+2026-06-25 16:39:28,251 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - FPAN
+2026-06-25 16:39:28,251 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS31
+2026-06-25 16:39:28,251 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS38
+2026-06-25 16:39:28,252 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS41
+2026-06-25 16:39:28,252 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS51
+2026-06-25 16:39:28,252 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - NS52
+2026-06-25 16:39:28,252 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-18
+2026-06-25 16:39:28,252 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-19
+2026-06-25 16:39:28,253 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-20
+2026-06-25 16:39:28,253 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - P-37
+2026-06-25 16:39:28,253 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS73
+2026-06-25 16:39:28,253 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS81
+2026-06-25 16:39:28,254 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - MARLIM - SS83
+2026-06-25 16:39:28,254 | WARNING |   Registro sem match no DE_PARA: CAMPOS MAR - RAIA - TBD-NOP-03
+2026-06-25 16:39:28,254 | WARNING |   Registro sem match no DE_PARA: GUAJIRA OFFSHORE - GUA-OFF 0 - NDIS
+2026-06-25 16:39:28,254 | WARNING |   Registro sem match no DE_PARA: ORANGE - DWOB - TBD-NOP-AFS-01
+2026-06-25 16:39:28,254 | WARNING |   Registro sem match no DE_PARA: POTIGUAR MAR -  - BAE II (GAD)
+2026-06-25 16:39:28,255 | WARNING |   Registro sem match no DE_PARA: POTIGUAR MAR -  - SOV/BAE IV (GAD)
+2026-06-25 16:39:28,255 | WARNING |   Registro sem match no DE_PARA: SERGIPE MAR -  - BAE I (GAD)
+2026-06-25 16:39:28,255 | WARNING |   Registro sem match no DE_PARA: SERGIPE MAR -  - SOV Inexigibilidade I (GAD)

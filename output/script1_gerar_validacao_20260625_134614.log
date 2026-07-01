@@ -1,0 +1,17 @@
+2026-06-25 13:46:14,017 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_134614.log
+2026-06-25 13:46:14,017 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
+2026-06-25 13:46:14,017 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
+2026-06-25 13:46:20,429 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
+2026-06-25 13:46:29,896 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_134629.xlsx
+2026-06-25 13:47:12,519 | INFO | Excel COM inicializado via DispatchEx.
+2026-06-25 13:47:14,085 | INFO | TD: aba limpa e pronta.
+2026-06-25 13:47:14,101 | INFO | TD: origem 'cronograma_base'!R1C1:R4012C20
+2026-06-25 13:47:14,137 | INFO | TD: PivotTable criada (PivotCronograma_134714).
+2026-06-25 13:47:14,186 | INFO | TD: campos de linha/coluna/valor configurados.
+2026-06-25 13:47:14,252 | INFO | TD: filtros de página configurados.
+2026-06-25 13:47:14,401 | INFO | TD: pivot atualizada.
+2026-06-25 13:47:14,543 | INFO | TD: arquivo salvo com pivot.
+2026-06-25 13:47:14,543 | INFO | Aba TD criada como Tabela Dinâmica com filtros/slicers.
+2026-06-25 13:48:14,764 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_134629.xlsx
+2026-06-25 13:48:14,765 | INFO | Linhas no cronograma_base: 4011
+2026-06-25 13:48:14,765 | INFO | Envio de e-mail desativado por --no-email.

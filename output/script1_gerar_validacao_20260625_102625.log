@@ -1,0 +1,8 @@
+2026-06-25 10:26:25,545 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_102625.log
+2026-06-25 10:26:25,545 | INFO | === script1_gerar_validacao iniciado ===
+2026-06-25 10:26:25,545 | ERROR | Falha no script1: name 'last_day_of_month' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Public\Python\src\Entregas\output_outlook\scripts\script1_gerar_validacao.py", line 371, in main
+    mes_ref_date = last_day_of_month(date(year, month, 1))
+                   ^^^^^^^^^^^^^^^^^
+NameError: name 'last_day_of_month' is not defined. Did you mean: 'first_day_of_month'?

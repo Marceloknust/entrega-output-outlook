@@ -1,0 +1,5 @@
+# Dependencias especificas desta entrega
+pandas>=2.0
+openpyxl>=3.1
+pywin32>=306        # win32com — necessario no Windows com Outlook instalado
+xlwings>=0.33
