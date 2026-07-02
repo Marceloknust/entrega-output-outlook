@@ -15,8 +15,8 @@ ETAPAS:
 3. Aplica filtro: TIPO = "SONDA", "UEP" ou "UMS"
 4. Expande para cronograma base (replicando expandir_cronoweb.py)
 5. Cria chave de busca:
-   - Prioridade: Prefixo SAP + Bloco Ajustado
-   - Fallback: Bacia Ajustada + Bloco Ajustado
+    - Prioridade: Prefixo SAP + Bloco Ajustado + TIPO
+    - Fallback: Bacia Ajustada + Bloco Ajustado + TIPO
 6. Aplica DE_PARA usando a nova chave
 7. Gera arquivo com 4 abas:
    - "Base Dados": cópia integral do original
@@ -97,6 +97,8 @@ CRONOGRAMA_COLS = [
     "Bacia Ajustada",
     "Bloco Ajustado",
     "Prefixo SAP",
+    "Nome da Locação",
+    "Nome do Poço",
     "MesReferencia",
     "InicioNoMes",
     "FimNoMes",
@@ -114,6 +116,8 @@ AJUSTE_COLS = [
     "Bacia Ajustada",
     "Bloco Ajustado",
     "Prefixo SAP",
+    "Nome da Locação",
+    "Nome do Poço",
     "Validação",
     "Atendimento_ajustado",
     "Contrato_ajustado",
@@ -449,20 +453,50 @@ def _clean_key_part(value: object) -> str:
     return str(value).strip()
 
 
-def _lookup_key_preferred(prefixo_unidade: object, bloco: object) -> tuple[str, str, str] | None:
+def _lookup_key_preferred(prefixo_unidade: object, bloco: object, tipo: object | None = None) -> tuple[str, str, str, str] | None:
+    p = _clean_key_part(prefixo_unidade)
+    b = _clean_key_part(bloco)
+    t = _clean_key_part(tipo)
+    if p and b and t:
+        return ("prefixo", p, b, t.upper())
+    return None
+
+
+def _lookup_key_fallback(bacia: object, bloco: object, tipo: object | None = None) -> tuple[str, str, str, str] | None:
+    ba = _clean_key_part(bacia)
+    bl = _clean_key_part(bloco)
+    t = _clean_key_part(tipo)
+    if ba and bl and t:
+        return ("bacia", ba, bl, t.upper())
+    return None
+
+
+def _lookup_key_without_tipo(prefixo_unidade: object, bloco: object, base_kind: str) -> tuple[str, str, str, str] | None:
     p = _clean_key_part(prefixo_unidade)
     b = _clean_key_part(bloco)
     if p and b:
-        return ("prefixo", p, b)
+        return (base_kind, p, b, "")
     return None
 
 
-def _lookup_key_fallback(bacia: object, bloco: object) -> tuple[str, str, str] | None:
-    ba = _clean_key_part(bacia)
-    bl = _clean_key_part(bloco)
-    if ba and bl:
-        return ("bacia", ba, bl)
-    return None
+def _expand_de_para_tipos(row: pd.Series, col_sonda: str | None, col_uep: str | None, col_ums: str | None) -> list[str]:
+    tipo_map = [
+        ("SONDA", col_sonda),
+        ("UEP", col_uep),
+        ("UMS", col_ums),
+    ]
+    selected: list[str] = []
+    for tipo, col_name in tipo_map:
+        if col_name is None:
+            continue
+        if normalize_name(row.get(col_name)) == "sim":
+            selected.append(tipo)
+
+    # Compatibilidade com o arquivo atual: se nao houver colunas por tipo,
+    # aplica a linha para os tres tipos.
+    if not selected:
+        selected = ["SONDA", "UEP", "UMS"]
+    return selected
 
 
 def _normalize_integral(value: object) -> str:
@@ -477,7 +511,7 @@ def _normalize_integral(value: object) -> str:
 def build_de_para_map(
     df_de_para: pd.DataFrame,
     logger: logging.Logger,
-) -> tuple[dict[tuple[str, str, str], dict[str, object]], set[tuple[str, str]]]:
+) -> tuple[dict[tuple[str, str, str, str], dict[str, object]], set[tuple[str, str]]]:
     col_bacia = find_column(df_de_para, ["Bacia Ajustado", "Bacia Ajustada"])
     col_bloco = find_column(df_de_para, ["Bloco Ajustado"])
     col_unidade = find_column(df_de_para, ["Unidade Marítima", "Unidade Maritima"], required=False)
@@ -485,11 +519,14 @@ def build_de_para_map(
     col_atendimento = find_column(df_de_para, ["Atendimento"], required=False)
     col_contrato = find_column(df_de_para, ["Contrato"], required=False)
     col_modalidade = find_column(df_de_para, ["Modalidade"], required=False)
+    col_sonda = find_column(df_de_para, ["Sonda", "SONDA"], required=False)
+    col_uep = find_column(df_de_para, ["UEP"], required=False)
+    col_ums = find_column(df_de_para, ["UMS"], required=False)
 
-    result: dict[tuple[str, str, str], dict[str, object]] = {}
+    result: dict[tuple[str, str, str, str], dict[str, object]] = {}
     sim_bacia_bloco: set[tuple[str, str]] = set()
     nao_bacia_bloco: set[tuple[str, str]] = set()
-    duplicates: dict[tuple[str, str, str], list[int]] = {}
+    duplicates: dict[tuple[str, str, str, str], list[int]] = {}
     invalid_integral_rows: list[int] = []
 
     for idx, row in df_de_para.iterrows():
@@ -514,35 +551,43 @@ def build_de_para_map(
             "Modalidade": row.get(col_modalidade) if col_modalidade else None,
         }
 
+        tipos_expandidos = _expand_de_para_tipos(row, col_sonda, col_uep, col_ums)
+        base_kind = "bacia" if integral_val == "sim" else "prefixo"
+        base_value = bacia_val if integral_val == "sim" else unidade_val
+
         if integral_val == "sim":
-            key = _lookup_key_fallback(bacia_val, bloco_val)
-            key_desc = "Bacia Ajustada + Bloco Ajustado"
+            key_desc = "Bacia Ajustada + Bloco Ajustado + TIPO"
             bacia_clean = _clean_key_part(bacia_val)
             bloco_clean = _clean_key_part(bloco_val)
             if bacia_clean and bloco_clean:
                 sim_bacia_bloco.add((bacia_clean, bloco_clean))
         else:
-            key = _lookup_key_preferred(unidade_val, bloco_val)
-            key_desc = "Bloco Ajustado + Unidade Maritima"
+            key_desc = "Unidade Maritima + Bloco Ajustado + TIPO"
             bacia_clean = _clean_key_part(bacia_val)
             bloco_clean = _clean_key_part(bloco_val)
             if bacia_clean and bloco_clean:
                 nao_bacia_bloco.add((bacia_clean, bloco_clean))
 
-        if key is None:
+        key_base = _clean_key_part(base_value)
+        if not key_base:
             logger.error(
-                "DE_PARA linha %d sem chave completa para Integral=%s (%s).",
+                "DE_PARA linha %d sem chave base completa para Integral=%s (%s).",
                 row_number,
                 integral_val,
                 key_desc,
             )
             continue
 
-        if key in result:
-            duplicates.setdefault(key, []).append(row_number)
-            continue
+        for tipo in tipos_expandidos:
+            key = (base_kind, key_base, _clean_key_part(bloco_val), tipo)
+            if key in result:
+                duplicates.setdefault(key, []).append(row_number)
+                continue
+            result[key] = payload
 
-        result[key] = payload
+        legacy_key = (base_kind, key_base, _clean_key_part(bloco_val), "")
+        if legacy_key not in result:
+            result[legacy_key] = payload
 
     if invalid_integral_rows:
         logger.error(
@@ -568,7 +613,7 @@ def build_de_para_map(
 
 def build_cronograma_base(
     df_base: pd.DataFrame,
-    de_para_map: dict[tuple[str, str, str], dict[str, object]],
+    de_para_map: dict[tuple[str, str, str, str], dict[str, object]],
     nao_scoped_bacia_bloco: set[tuple[str, str]],
     ano_base: int,
     mes_base: int,
@@ -581,6 +626,8 @@ def build_cronograma_base(
     col_bacia = find_column(df_base, ["Bacia Ajustada", "Bacia Ajustado"])
     col_bloco = find_column(df_base, ["Bloco Ajustado"])
     col_prefixo = find_column(df_base, ["Prefixo SAP", "Prefixo"])
+    col_nome_locacao = find_column(df_base, ["Nome da Locação", "Nome da Locacao"])
+    col_nome_poco = find_column(df_base, ["Nome do Poço", "Nome do Poco"])
     col_inicio = find_column(df_base, ["Data inicio", "Data Inicio", "Inicio", "Inicio Programado", "Data inicial"])
     col_fim = find_column(df_base, ["Data termino", "Data fim", "Fim", "Fim Programado", "Data final"])
 
@@ -617,17 +664,23 @@ def build_cronograma_base(
             bloco_val = _clean_key_part(row.get(col_bloco, ""))
             prefixo_val = _clean_key_part(row.get(col_prefixo, ""))
 
-            preferred_key = _lookup_key_preferred(prefixo_val, bloco_val)
-            fallback_key = _lookup_key_fallback(bacia_val, bloco_val)
+            preferred_key = _lookup_key_preferred(prefixo_val, bloco_val, tipo_val)
+            fallback_key = _lookup_key_fallback(bacia_val, bloco_val, tipo_val)
+            preferred_legacy = _lookup_key_without_tipo(prefixo_val, bloco_val, "prefixo")
+            fallback_legacy = _lookup_key_without_tipo(bacia_val, bloco_val, "bacia")
 
-            # Prioridade: Prefixo SAP + Bloco. Se nao encontrar, tenta Bacia + Bloco.
+            # Prioridade: Prefixo SAP + Bloco + TIPO. Se nao encontrar, tenta sem TIPO.
             if preferred_key is not None and preferred_key in de_para_map:
                 lookup_key = preferred_key
+            elif preferred_legacy is not None and preferred_legacy in de_para_map:
+                lookup_key = preferred_legacy
             elif (bacia_val, bloco_val) in nao_scoped_bacia_bloco:
                 # Para pares Bacia+Bloco em regra Integral=Não, nao pode usar fallback por Bacia+Bloco.
                 lookup_key = None
             elif fallback_key is not None and fallback_key in de_para_map:
                 lookup_key = fallback_key
+            elif fallback_legacy is not None and fallback_legacy in de_para_map:
+                lookup_key = fallback_legacy
             else:
                 lookup_key = None
 
@@ -641,6 +694,20 @@ def build_cronograma_base(
             contrato_val = _clean_key_part(d.get("Contrato"))
             modalidade_val = _clean_key_part(d.get("Modalidade"))
 
+            if atendimento_val == "" and contrato_val == "" and modalidade_val == "":
+                atendimento_val = "petrobras"
+                contrato_val = "petrobras"
+                modalidade_val = "petrobras"
+
+            contrato_norm = normalize_name(contrato_val)
+            if (
+                tipo_val == "UMS"
+                and "controle de emergencia" in contrato_norm
+                and "buzios" not in contrato_norm
+                and "forno" not in contrato_norm
+            ):
+                atendimento_val = "Petrobras"
+
             rows_out.append(
                 {
                     "TIPO": row.get(col_tipo),
@@ -648,6 +715,8 @@ def build_cronograma_base(
                     "Bacia Ajustada": bacia_val,
                     "Bloco Ajustado": bloco_val,
                     "Prefixo SAP": row.get(col_prefixo),
+                    "Nome da Locação": row.get(col_nome_locacao),
+                    "Nome do Poço": row.get(col_nome_poco),
                     "MesReferencia": item.mes_referencia,
                     "InicioNoMes": item.inicio_no_mes,
                     "FimNoMes": item.fim_no_mes,
@@ -1008,6 +1077,8 @@ try {{
     Write-Host "CREATED: $($wsTD.PivotTables().Count)"
     $pt.PivotFields('Bloco Ajustado').Orientation = 1
     $pt.PivotFields('Prefixo SAP').Orientation     = 1
+    $pt.PivotFields('Nome da Locação').Orientation  = 1
+    $pt.PivotFields('Nome do Poço').Orientation     = 1
     $pfMes = $pt.PivotFields('MesReferencia')
     $pfMes.Orientation = 2
     [void]$pt.AddDataField($pt.PivotFields('DiasOperadosMes'), 'Soma DiasOperadosMes', -4157)
@@ -1089,7 +1160,7 @@ try {{
 """
 
     ps_file = Path(tempfile.mktemp(suffix=".ps1"))
-    ps_file.write_text(ps_script, encoding="utf-8")
+    ps_file.write_text(ps_script, encoding="utf-8-sig")
     try:
         result = subprocess.run(
             ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(ps_file)],
