@@ -1,9 +1,0 @@
-2026-06-25 13:00:17,493 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_130017.log
-2026-06-25 13:00:17,493 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
-2026-06-25 13:00:17,493 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
-2026-06-25 13:00:24,060 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
-2026-06-25 13:00:33,666 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_130033.xlsx
-2026-06-25 13:01:15,793 | WARNING | TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: This COM object can not automate the makepy process - please run makepy manually for this object
-2026-06-25 13:01:15,793 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_130033.xlsx
-2026-06-25 13:01:15,793 | INFO | Linhas no cronograma_base: 4011
-2026-06-25 13:01:15,793 | INFO | Envio de e-mail desativado por --no-email.

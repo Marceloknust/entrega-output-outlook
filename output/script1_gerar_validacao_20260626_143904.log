@@ -1,4 +1,0 @@
-2026-06-26 14:39:04,373 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260626_143904.log
-2026-06-26 14:39:06,799 | INFO | AnoMesBase selecionado pelo usuário: ano=2026, mes=6
-2026-06-26 14:39:11,265 | INFO | Coleta de e-mails cancelada pelo usuário.
-2026-06-26 14:39:11,268 | INFO | Execução cancelada antes do processamento por falta de confirmação dos e-mails.

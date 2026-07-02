@@ -1,5 +1,0 @@
-2026-06-25 11:50:00,348 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_115000.log
-2026-06-25 11:50:00,348 | INFO | Periodo por parâmetro: ano=2026, mes_inicial=4
-2026-06-25 11:50:00,348 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
-2026-06-25 11:50:08,254 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
-2026-06-25 11:50:23,676 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202604_20260625_115023.xlsx

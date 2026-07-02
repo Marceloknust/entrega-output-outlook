@@ -1,9 +1,0 @@
-2026-06-25 14:01:31,582 | INFO | Log inicializado em: C:\Users\Public\Python\src\Entregas\output_outlook\output\script1_gerar_validacao_20260625_140131.log
-2026-06-25 14:01:31,583 | INFO | AnoMesBase por parâmetro: ano=2026, mes=5
-2026-06-25 14:01:31,584 | INFO | Base de dados: C:\Users\Public\Python\src\Entregas\output_outlook\input\Anexo I - Base de Dados Demanda Primária Abril 2026.xlsx
-2026-06-25 14:01:38,115 | WARNING | DE_PARA contem 39 chaves duplicadas (ultima ocorrencia prevalece).
-2026-06-25 14:01:47,820 | WARNING | Arquivo aberto. Usando fallback: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_140147.xlsx
-2026-06-25 14:02:30,985 | WARNING | TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: No module named 'xlwings'
-2026-06-25 14:02:30,999 | INFO | Arquivo gerado: C:\Users\Public\Python\src\Entregas\output_outlook\output\cronograma_outlook_validacao_202605_20260625_140147.xlsx
-2026-06-25 14:02:30,999 | INFO | Linhas no cronograma_base: 4011
-2026-06-25 14:02:30,999 | INFO | Envio de e-mail desativado por --no-email.
