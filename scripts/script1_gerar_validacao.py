@@ -238,7 +238,7 @@ def split_interval_by_custom_month(start_date: date, end_date: date) -> list[Mon
     return slices
 
 ## Funcoes de interface grafica para selecao de ano e mes
-def pick_year_month(timeout_seconds: int = 600) -> tuple[int, int] | None:
+def pick_year_month(timeout_seconds: int = 600) -> tuple[int, int, int, int] | None:
     current = date.today().year
     years = [str(y) for y in range(current - 5, current + 6)]
     months = [
@@ -258,7 +258,7 @@ def pick_year_month(timeout_seconds: int = 600) -> tuple[int, int] | None:
 
     root = tk.Tk()
     root.title("Selecao de Periodo - output_outlook")
-    root.geometry("460x330")
+    root.geometry("460x420")
     root.resizable(False, False)
     root.attributes("-topmost", True)
     root.lift()
@@ -272,6 +272,14 @@ def pick_year_month(timeout_seconds: int = 600) -> tuple[int, int] | None:
     month_display = [f"{num} - {name}" for num, name in months]
     selected_month = tk.StringVar(value=month_display[date.today().month - 1])
     ttk.Combobox(root, values=month_display, textvariable=selected_month, state="readonly").pack(fill=tk.BOTH, padx=16)
+
+    ttk.Label(root, text="Ano Final:").pack(anchor="w", padx=16, pady=(12, 4))
+    selected_year_end = tk.StringVar(value=str(current))
+    ttk.Combobox(root, values=years, textvariable=selected_year_end, state="readonly").pack(fill=tk.BOTH, padx=16)
+
+    ttk.Label(root, text="Mes Final:").pack(anchor="w", padx=16, pady=(12, 4))
+    selected_month_end = tk.StringVar(value="12 - Dezembro")
+    ttk.Combobox(root, values=month_display, textvariable=selected_month_end, state="readonly").pack(fill=tk.BOTH, padx=16)
 
     result: dict[str, int] = {}
     remaining_seconds = max(30, int(timeout_seconds))
@@ -296,9 +304,16 @@ def pick_year_month(timeout_seconds: int = 600) -> tuple[int, int] | None:
         try:
             result["year"] = int(selected_year.get())
             result["month"] = int(selected_month.get().split(" - ", 1)[0])
+            result["year_end"] = int(selected_year_end.get())
+            result["month_end"] = int(selected_month_end.get().split(" - ", 1)[0])
+
+            start_ref = date(result["year"], result["month"], 1)
+            end_ref = date(result["year_end"], result["month_end"], 1)
+            if end_ref < start_ref:
+                raise ValueError("Periodo final anterior ao inicial.")
             root.destroy()
         except Exception:
-            messagebox.showerror("Erro", "Selecione ano e mes validos.")
+            messagebox.showerror("Erro", "Selecione ano/mes inicial e final validos.")
 
     def cancel() -> None:
         root.destroy()
@@ -318,9 +333,9 @@ def pick_year_month(timeout_seconds: int = 600) -> tuple[int, int] | None:
     tick()
     root.mainloop()
 
-    if "year" not in result or "month" not in result:
+    if "year" not in result or "month" not in result or "year_end" not in result or "month_end" not in result:
         return None
-    return result["year"], result["month"]
+    return result["year"], result["month"], result["year_end"], result["month_end"]
 
 ### Funcoes de manipulacao de arquivos e envio de e-mail
 def _extract_year_month_from_filename(path: Path) -> tuple[int, int] | None:
@@ -557,6 +572,8 @@ def build_cronograma_base(
     nao_scoped_bacia_bloco: set[tuple[str, str]],
     ano_base: int,
     mes_base: int,
+    ano_final: int,
+    mes_final: int,
     logger: logging.Logger | None = None,
 ) -> pd.DataFrame:
     col_tipo = find_column(df_base, ["TIPO", "Tipo"])
@@ -567,10 +584,10 @@ def build_cronograma_base(
     col_inicio = find_column(df_base, ["Data inicio", "Data Inicio", "Inicio", "Inicio Programado", "Data inicial"])
     col_fim = find_column(df_base, ["Data termino", "Data fim", "Fim", "Fim Programado", "Data final"])
 
-    # AnoMesBase define o corte inicial; processa do mes seguinte ate dezembro do mesmo ano.
+    # AnoMesBase define o corte inicial; processa do mes seguinte ate o periodo final informado.
     first_ref_month_start = next_month(date(ano_base, mes_base, 1))
     min_ref = last_day_of_month(first_ref_month_start)
-    max_ref = last_day_of_month(date(ano_base, 12, 1))
+    max_ref = last_day_of_month(date(ano_final, mes_final, 1))
 
     rows_out: list[dict[str, object]] = []
     no_match_keys: set[tuple[str, str, str]] = set()
@@ -669,12 +686,28 @@ def build_ajuste_sheet(df_cronograma: pd.DataFrame) -> pd.DataFrame:
         .groupby(keys, as_index=False)["_sem_match"]
         .max()
     )
+    periodos = (
+        df_cronograma.groupby(keys, as_index=False)
+        .agg(
+            {
+                "InicioNoMes": "min",
+                "FimNoMes": "max",
+            }
+        )
+        .rename(
+            columns={
+                "InicioNoMes": "Inicio_ajustado",
+                "FimNoMes": "Final_ajustado",
+            }
+        )
+    )
 
     ajuste = df_cronograma.drop_duplicates(
         subset=keys,
         keep="first",
     ).copy()
     ajuste = ajuste.merge(status, on=keys, how="left")
+    ajuste = ajuste.merge(periodos, on=keys, how="left")
     ajuste["Validação"] = ajuste["_sem_match"].map({True: "Não", False: "Sim"}).fillna("Sim")
     ajuste = ajuste.drop(columns=["_sem_match"])
 
@@ -690,8 +723,17 @@ def build_ajuste_sheet(df_cronograma: pd.DataFrame) -> pd.DataFrame:
         lambda r: r["Modalidade"] if r["Validação"] == "Sim" else "",
         axis=1,
     )
-    ajuste["Inicio_ajustado"] = ""
-    ajuste["Final_ajustado"] = ""
+
+    campos_ajustados = ["Atendimento_ajustado", "Contrato_ajustado", "Modalidade_ajustado"]
+    todos_em_branco = (
+        ajuste[campos_ajustados]
+        .fillna("")
+        .astype(str)
+        .apply(lambda col: col.str.strip())
+        .eq("")
+        .all(axis=1)
+    )
+    ajuste.loc[todos_em_branco, campos_ajustados] = "Petrobras"
 
     return ajuste[AJUSTE_COLS]
 
@@ -1207,6 +1249,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Gera arquivo de validação do output_outlook.")
     parser.add_argument("--year", type=int, help="Ano para gerar (ex: 2026).")
     parser.add_argument("--month", type=int, help="Mês inicial para gerar (1-12).")
+    parser.add_argument("--end-year", type=int, help="Ano final para gerar (ex: 2026). Padrão: ano corrente.")
+    parser.add_argument("--end-month", type=int, help="Mês final para gerar (1-12). Padrão: 12 (dezembro).")
     parser.add_argument(
         "--selection-timeout",
         type=int,
@@ -1237,20 +1281,44 @@ def main() -> None:
 
     if args.year and args.month:
         ano_base, mes_base = args.year, args.month
-        logger.info("AnoMesBase por parâmetro: ano=%s, mes=%s", ano_base, mes_base)
+        ano_final = args.end_year if args.end_year else date.today().year
+        mes_final = args.end_month if args.end_month else 12
+        logger.info(
+            "Periodo por parâmetro: inicio=%02d/%s | fim=%02d/%s",
+            mes_base,
+            ano_base,
+            mes_final,
+            ano_final,
+        )
     else:
         periodo = pick_year_month(timeout_seconds=args.selection_timeout)
         if periodo is None:
             logger.warning("Execução cancelada na seleção de período.")
             return
-        ano_base, mes_base = periodo
-        logger.info("AnoMesBase selecionado pelo usuário: ano=%s, mes=%s", ano_base, mes_base)
+        ano_base, mes_base, ano_final, mes_final = periodo
+        logger.info(
+            "Periodo selecionado pelo usuário: inicio=%02d/%s | fim=%02d/%s",
+            mes_base,
+            ano_base,
+            mes_final,
+            ano_final,
+        )
 
     if mes_base < 1 or mes_base > 12:
         raise ValueError("Mês inválido. Use valor entre 1 e 12.")
+    if mes_final < 1 or mes_final > 12:
+        raise ValueError("Mês final inválido. Use valor entre 1 e 12.")
 
-    if mes_base == 12:
-        raise ValueError("AnoMesBase em dezembro não possui meses seguintes no mesmo ano para processar.")
+    start_ref = date(ano_base, mes_base, 1)
+    end_ref = date(ano_final, mes_final, 1)
+    if end_ref < start_ref:
+        raise ValueError("Período final deve ser maior ou igual ao período inicial.")
+
+    first_process_ref = next_month(start_ref)
+    if end_ref < first_process_ref:
+        raise ValueError(
+            "Intervalo sem meses para processar. Ajuste o mês final para pelo menos o mês seguinte ao inicial."
+        )
 
     email_recipients: tuple[str, str] | None = None
     should_send_email = False
@@ -1275,7 +1343,7 @@ def main() -> None:
             email_recipients = (recipients_info[0], recipients_info[1])
             should_send_email = recipients_info[2]
 
-    periodo_label = f"{month_name_pt(mes_base)}/{ano_base} até Dezembro/{ano_base}"
+    periodo_label = f"{month_name_pt(mes_base)}/{ano_base} até {month_name_pt(mes_final)}/{ano_final}"
 
     base_dados_path = resolve_base_dados_file()
     logger.info("Base de dados: %s", base_dados_path)
@@ -1284,7 +1352,16 @@ def main() -> None:
     df_de_para = read_excel_with_fallback(DE_PARA_FILE, "DE_PARA")
 
     de_para_map, nao_scoped_bacia_bloco = build_de_para_map(df_de_para, logger)
-    df_cronograma = build_cronograma_base(df_base, de_para_map, nao_scoped_bacia_bloco, ano_base, mes_base, logger)
+    df_cronograma = build_cronograma_base(
+        df_base,
+        de_para_map,
+        nao_scoped_bacia_bloco,
+        ano_base,
+        mes_base,
+        ano_final,
+        mes_final,
+        logger,
+    )
     df_ajuste = build_ajuste_sheet(df_cronograma)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
