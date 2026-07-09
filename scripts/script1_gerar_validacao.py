@@ -48,6 +48,7 @@ import argparse
 import calendar
 import getpass
 import logging
+import shutil
 import time
 from dataclasses import dataclass
 import re
@@ -108,6 +109,7 @@ CRONOGRAMA_COLS = [
     "Atendimento",
     "Contrato",
     "Modalidade",
+    "PEP raiz",
 ]
 
 AJUSTE_COLS = [
@@ -118,6 +120,7 @@ AJUSTE_COLS = [
     "Prefixo SAP",
     "Nome da Locação",
     "Nome do Poço",
+    "PEP raiz",
     "Validação",
     "Atendimento_ajustado",
     "Contrato_ajustado",
@@ -471,14 +474,6 @@ def _lookup_key_fallback(bacia: object, bloco: object, tipo: object | None = Non
     return None
 
 
-def _lookup_key_without_tipo(prefixo_unidade: object, bloco: object, base_kind: str) -> tuple[str, str, str, str] | None:
-    p = _clean_key_part(prefixo_unidade)
-    b = _clean_key_part(bloco)
-    if p and b:
-        return (base_kind, p, b, "")
-    return None
-
-
 def _expand_de_para_tipos(row: pd.Series, col_sonda: str | None, col_uep: str | None, col_ums: str | None) -> list[str]:
     tipo_map = [
         ("SONDA", col_sonda),
@@ -519,6 +514,7 @@ def build_de_para_map(
     col_atendimento = find_column(df_de_para, ["Atendimento"], required=False)
     col_contrato = find_column(df_de_para, ["Contrato"], required=False)
     col_modalidade = find_column(df_de_para, ["Modalidade"], required=False)
+    col_pep = find_column(df_de_para, ["PEP raiz", "PEP"], required=False)
     col_sonda = find_column(df_de_para, ["Sonda", "SONDA"], required=False)
     col_uep = find_column(df_de_para, ["UEP"], required=False)
     col_ums = find_column(df_de_para, ["UMS"], required=False)
@@ -549,6 +545,7 @@ def build_de_para_map(
             "Atendimento": row.get(col_atendimento) if col_atendimento else None,
             "Contrato": row.get(col_contrato) if col_contrato else None,
             "Modalidade": row.get(col_modalidade) if col_modalidade else None,
+            "PEP raiz": row.get(col_pep) if col_pep else None,
         }
 
         tipos_expandidos = _expand_de_para_tipos(row, col_sonda, col_uep, col_ums)
@@ -584,10 +581,6 @@ def build_de_para_map(
                 duplicates.setdefault(key, []).append(row_number)
                 continue
             result[key] = payload
-
-        legacy_key = (base_kind, key_base, _clean_key_part(bloco_val), "")
-        if legacy_key not in result:
-            result[legacy_key] = payload
 
     if invalid_integral_rows:
         logger.error(
@@ -631,8 +624,8 @@ def build_cronograma_base(
     col_inicio = find_column(df_base, ["Data inicio", "Data Inicio", "Inicio", "Inicio Programado", "Data inicial"])
     col_fim = find_column(df_base, ["Data termino", "Data fim", "Fim", "Fim Programado", "Data final"])
 
-    # AnoMesBase define o corte inicial; processa do mes seguinte ate o periodo final informado.
-    first_ref_month_start = next_month(date(ano_base, mes_base, 1))
+    # AnoMesBase define o corte inicial; processa do proprio mes inicial ate o periodo final informado.
+    first_ref_month_start = date(ano_base, mes_base, 1)
     min_ref = last_day_of_month(first_ref_month_start)
     max_ref = last_day_of_month(date(ano_final, mes_final, 1))
 
@@ -666,21 +659,15 @@ def build_cronograma_base(
 
             preferred_key = _lookup_key_preferred(prefixo_val, bloco_val, tipo_val)
             fallback_key = _lookup_key_fallback(bacia_val, bloco_val, tipo_val)
-            preferred_legacy = _lookup_key_without_tipo(prefixo_val, bloco_val, "prefixo")
-            fallback_legacy = _lookup_key_without_tipo(bacia_val, bloco_val, "bacia")
 
-            # Prioridade: Prefixo SAP + Bloco + TIPO. Se nao encontrar, tenta sem TIPO.
+            # Prioridade: Prefixo SAP + Bloco + TIPO.
             if preferred_key is not None and preferred_key in de_para_map:
                 lookup_key = preferred_key
-            elif preferred_legacy is not None and preferred_legacy in de_para_map:
-                lookup_key = preferred_legacy
             elif (bacia_val, bloco_val) in nao_scoped_bacia_bloco:
                 # Para pares Bacia+Bloco em regra Integral=Não, nao pode usar fallback por Bacia+Bloco.
                 lookup_key = None
             elif fallback_key is not None and fallback_key in de_para_map:
                 lookup_key = fallback_key
-            elif fallback_legacy is not None and fallback_legacy in de_para_map:
-                lookup_key = fallback_legacy
             else:
                 lookup_key = None
 
@@ -693,6 +680,7 @@ def build_cronograma_base(
             atendimento_val = _clean_key_part(d.get("Atendimento"))
             contrato_val = _clean_key_part(d.get("Contrato"))
             modalidade_val = _clean_key_part(d.get("Modalidade"))
+            pep_val = _clean_key_part(d.get("PEP raiz"))
 
             if atendimento_val == "" and contrato_val == "" and modalidade_val == "":
                 atendimento_val = "petrobras"
@@ -726,6 +714,7 @@ def build_cronograma_base(
                     "Atendimento": atendimento_val,
                     "Contrato": contrato_val,
                     "Modalidade": modalidade_val,
+                    "PEP raiz": pep_val,
                 }
             )
 
@@ -1037,6 +1026,20 @@ def apply_ajuste_format(workbook_path: Path) -> None:
 
     wb.save(workbook_path)
     wb.close()
+
+
+def copy_output_to_input(output_path: Path, logger: logging.Logger) -> Path:
+    INPUT_DIR.mkdir(parents=True, exist_ok=True)
+    input_copy_path = INPUT_DIR / "cronograma_outlook_validacao.xlsx"
+    try:
+        shutil.copy2(output_path, input_copy_path)
+    except PermissionError as exc:
+        raise PermissionError(
+            f"Nao foi possivel sobrescrever {input_copy_path}. Feche o arquivo no Excel e execute novamente."
+        ) from exc
+
+    logger.info("Copia automatica atualizada para entrada do Script 3: %s", input_copy_path)
+    return input_copy_path
 
 
 def build_td_pivot_with_slicers(workbook_path: Path, logger: logging.Logger) -> None:
@@ -1436,14 +1439,14 @@ def main() -> None:
     df_ajuste = build_ajuste_sheet(df_cronograma)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    output_path = OUTPUT_DIR / f"cronograma_outlook_validacao_{ano_base}{mes_base:02d}.xlsx"
+    output_path = OUTPUT_DIR / "cronograma_outlook_validacao.xlsx"
 
     try:
         write_output_workbook(base_dados_path, df_cronograma, df_ajuste, output_path)
     except PermissionError:
-        output_path = OUTPUT_DIR / f"cronograma_outlook_validacao_{ano_base}{mes_base:02d}_{datetime.now():%Y%m%d_%H%M%S}.xlsx"
-        logger.warning("Arquivo aberto. Usando fallback: %s", output_path)
-        write_output_workbook(base_dados_path, df_cronograma, df_ajuste, output_path)
+        raise PermissionError(
+            f"Nao foi possivel sobrescrever {output_path}. Feche o arquivo no Excel e execute novamente."
+        )
 
     apply_cronograma_basic_format(output_path)
     apply_ajuste_format(output_path)
@@ -1452,7 +1455,10 @@ def main() -> None:
     except Exception as exc:
         logger.warning("TD dinâmica não criada nesta execução. Seguindo com etapa 1. Motivo: %s", exc)
 
+    input_copy_path = copy_output_to_input(output_path, logger)
+
     logger.info("Arquivo gerado: %s", output_path)
+    logger.info("Arquivo de entrada do Script 3 atualizado: %s", input_copy_path)
     logger.info("Linhas no cronograma_base: %d", len(df_cronograma))
 
     if not args.no_email:
